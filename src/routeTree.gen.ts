@@ -13,7 +13,9 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/route'
 import { Route as AuthRouteImport } from './routes/auth'
 import { Route as ResetPasswordRouteImport } from './routes/reset-password'
+import { Route as AuthenticatedAuditsRouteImport } from './routes/_authenticated/audits'
 import { Route as AuthenticatedDashboardRouteImport } from './routes/_authenticated/dashboard'
+import { Route as AuthenticatedAuditsAuditIdRouteImport } from './routes/_authenticated/audits_.$auditId'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -34,23 +36,38 @@ const ResetPasswordRoute = ResetPasswordRouteImport.update({
   path: '/reset-password',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AuthenticatedAuditsRoute = AuthenticatedAuditsRouteImport.update({
+  id: '/audits',
+  path: '/audits',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
 const AuthenticatedDashboardRoute = AuthenticatedDashboardRouteImport.update({
   id: '/dashboard',
   path: '/dashboard',
   getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
+const AuthenticatedAuditsAuditIdRoute =
+  AuthenticatedAuditsAuditIdRouteImport.update({
+    id: '/audits_/$auditId',
+    path: '/audits/$auditId',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/auth': typeof AuthRoute
   '/reset-password': typeof ResetPasswordRoute
+  '/audits': typeof AuthenticatedAuditsRoute
   '/dashboard': typeof AuthenticatedDashboardRoute
+  '/audits/$auditId': typeof AuthenticatedAuditsAuditIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/auth': typeof AuthRoute
   '/reset-password': typeof ResetPasswordRoute
+  '/audits': typeof AuthenticatedAuditsRoute
   '/dashboard': typeof AuthenticatedDashboardRoute
+  '/audits/$auditId': typeof AuthenticatedAuditsAuditIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -58,20 +75,36 @@ export interface FileRoutesById {
   '/_authenticated': typeof AuthenticatedRouteRouteWithChildren
   '/auth': typeof AuthRoute
   '/reset-password': typeof ResetPasswordRoute
+  '/_authenticated/audits': typeof AuthenticatedAuditsRoute
   '/_authenticated/dashboard': typeof AuthenticatedDashboardRoute
+  '/_authenticated/audits_/$auditId': typeof AuthenticatedAuditsAuditIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/auth' | '/reset-password' | '/dashboard'
+  fullPaths:
+    | '/'
+    | '/auth'
+    | '/reset-password'
+    | '/audits'
+    | '/dashboard'
+    | '/audits/$auditId'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/auth' | '/reset-password' | '/dashboard'
+  to:
+    | '/'
+    | '/auth'
+    | '/reset-password'
+    | '/audits'
+    | '/dashboard'
+    | '/audits/$auditId'
   id:
     | '__root__'
     | '/'
     | '/_authenticated'
     | '/auth'
     | '/reset-password'
+    | '/_authenticated/audits'
     | '/_authenticated/dashboard'
+    | '/_authenticated/audits_/$auditId'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -111,6 +144,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ResetPasswordRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/_authenticated/audits': {
+      id: '/_authenticated/audits'
+      path: '/audits'
+      fullPath: '/audits'
+      preLoaderRoute: typeof AuthenticatedAuditsRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
     '/_authenticated/dashboard': {
       id: '/_authenticated/dashboard'
       path: '/dashboard'
@@ -118,15 +158,26 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedDashboardRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/_authenticated/audits_/$auditId': {
+      id: '/_authenticated/audits_/$auditId'
+      path: '/audits/$auditId'
+      fullPath: '/audits/$auditId'
+      preLoaderRoute: typeof AuthenticatedAuditsAuditIdRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
   }
 }
 
 interface AuthenticatedRouteRouteChildren {
+  AuthenticatedAuditsRoute: typeof AuthenticatedAuditsRoute
   AuthenticatedDashboardRoute: typeof AuthenticatedDashboardRoute
+  AuthenticatedAuditsAuditIdRoute: typeof AuthenticatedAuditsAuditIdRoute
 }
 
 const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
+  AuthenticatedAuditsRoute: AuthenticatedAuditsRoute,
   AuthenticatedDashboardRoute: AuthenticatedDashboardRoute,
+  AuthenticatedAuditsAuditIdRoute: AuthenticatedAuditsAuditIdRoute,
 }
 
 const AuthenticatedRouteRouteWithChildren =
