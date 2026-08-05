@@ -77,15 +77,21 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "OptiSite AI — AI Website Growth Platform" },
+      { title: "OptiSite AI — Free AI Website Audits & Growth Reports" },
       {
         name: "description",
         content:
-          "OptiSite AI audits any website for SEO, performance, security and accessibility, then hands you fixes and shareable reports. Free and unlimited.",
+          "OptiSite AI fetches your live site and scores SEO, performance, security and accessibility, then hands you prioritized fixes, competitor comparisons and shareable reports. Free and unlimited.",
       },
       { name: "author", content: "OptiSite AI" },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
+      { property: "og:title", content: "OptiSite AI — Free AI Website Audits & Growth Reports" },
+      { name: "twitter:title", content: "OptiSite AI — Free AI Website Audits & Growth Reports" },
+      { property: "og:description", content: "OptiSite AI fetches your live site and scores SEO, performance, security and accessibility, then hands you prioritized fixes, competitor comparisons and shareable reports. Free and unlimited." },
+      { name: "twitter:description", content: "OptiSite AI fetches your live site and scores SEO, performance, security and accessibility, then hands you prioritized fixes, competitor comparisons and shareable reports. Free and unlimited." },
+      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/ec0125d8-c3d1-4098-844c-98ca63d31e7c/id-preview-647bd95a--f62797c4-f709-421e-9f0a-76878e5f3941.lovable.app-1785908386887.png" },
+      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/ec0125d8-c3d1-4098-844c-98ca63d31e7c/id-preview-647bd95a--f62797c4-f709-421e-9f0a-76878e5f3941.lovable.app-1785908386887.png" },
     ],
     links: [
       { rel: "stylesheet", href: appCss },

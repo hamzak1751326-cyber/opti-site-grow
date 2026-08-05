@@ -29,11 +29,11 @@ export const Route = createFileRoute("/")({
         content:
           "OptiSite AI fetches your live site and scores SEO, performance, security and accessibility, then hands you prioritized fixes, competitor comparisons and shareable reports. Free and unlimited.",
       },
-      { property: "og:title", content: "OptiSite AI — Free AI Website Audits" },
+      { property: "og:title", content: "OptiSite AI — Free AI Website Audits & Growth Reports" },
       {
         property: "og:description",
         content:
-          "Audit any website with AI: SEO, performance, security and accessibility scores with prioritized fixes and reports. Completely free.",
+          "OptiSite AI fetches your live site and scores SEO, performance, security and accessibility, then hands you prioritized fixes, competitor comparisons and shareable reports. Free and unlimited.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
