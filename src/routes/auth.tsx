@@ -9,7 +9,6 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { lovable } from "@/integrations/lovable/index";
 import { supabase } from "@/integrations/supabase/client";
 
 const credentialsSchema = z.object({
@@ -46,7 +45,7 @@ function AuthPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [fullName, setFullName] = useState("");
-  const [pending, setPending] = useState<"password" | "google" | "reset" | null>(null);
+  const [pending, setPending] = useState<"password" | "reset" | null>(null);
   const [confirmSent, setConfirmSent] = useState(false);
 
   useEffect(() => {
@@ -97,25 +96,6 @@ function AuthPage() {
       }
     } catch (error) {
       toast.error(error instanceof Error ? error.message : "Authentication failed");
-    } finally {
-      setPending(null);
-    }
-  }
-
-  async function handleGoogle() {
-    setPending("google");
-    try {
-      const result = await lovable.auth.signInWithOAuth("google", {
-        redirect_uri: window.location.origin,
-      });
-      if (result.error) {
-        toast.error(result.error.message ?? "Google sign-in failed");
-        return;
-      }
-      if (result.redirected) return;
-      navigate({ to: "/dashboard", replace: true });
-    } catch (error) {
-      toast.error(error instanceof Error ? error.message : "Google sign-in failed");
     } finally {
       setPending(null);
     }
@@ -243,28 +223,6 @@ function AuthPage() {
                   {tab === "signup" ? "Create free account" : "Sign in"}
                 </Button>
               </form>
-
-              <div className="my-5 flex items-center gap-3">
-                <span className="h-px flex-1 bg-border" />
-                <span className="text-xs uppercase tracking-widest text-muted-foreground">or</span>
-                <span className="h-px flex-1 bg-border" />
-              </div>
-
-              <Button
-                type="button"
-                variant="outline"
-                size="lg"
-                className="w-full"
-                onClick={handleGoogle}
-                disabled={pending !== null}
-              >
-                {pending === "google" ? (
-                  <Loader2 className="size-4 animate-spin" aria-hidden="true" />
-                ) : (
-                  <GoogleMark />
-                )}
-                Continue with Google
-              </Button>
             </Tabs>
           )}
         </div>
@@ -283,13 +241,3 @@ function AuthPage() {
   );
 }
 
-function GoogleMark() {
-  return (
-    <svg viewBox="0 0 24 24" className="size-4" aria-hidden="true">
-      <path
-        fill="#EA4335"
-        d="M12 10.2v3.9h5.5c-.24 1.4-1.7 4.1-5.5 4.1-3.3 0-6-2.7-6-6.2s2.7-6.2 6-6.2c1.9 0 3.1.8 3.8 1.5l2.6-2.5C16.7 3.2 14.6 2.2 12 2.2 6.9 2.2 2.8 6.3 2.8 12s4.1 9.8 9.2 9.8c5.3 0 8.8-3.7 8.8-9 0-.6-.06-1-.15-1.6H12z"
-      />
-    </svg>
-  );
-}
