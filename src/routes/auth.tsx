@@ -17,8 +17,10 @@ const credentialsSchema = z.object({
 });
 
 export const Route = createFileRoute("/auth")({
-  validateSearch: (search: Record<string, unknown>) => ({
-    mode: search["mode"] === "signup" ? ("signup" as const) : ("signin" as const),
+  validateSearch: (
+    search: Record<string, unknown>,
+  ): { mode?: "signin" | "signup" } => ({
+    mode: search["mode"] === "signup" ? "signup" : "signin",
   }),
   head: () => ({
     meta: [
