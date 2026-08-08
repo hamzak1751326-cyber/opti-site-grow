@@ -51,10 +51,15 @@ function AuthPage() {
   const [confirmSent, setConfirmSent] = useState(false);
 
   useEffect(() => {
+    setTab(mode ?? "signin");
+  }, [mode]);
+
+  useEffect(() => {
     void supabase.auth.getSession().then(({ data }) => {
       if (data.session) navigate({ to: "/dashboard", replace: true });
     });
   }, [navigate]);
+
 
   function validate() {
     const parsed = credentialsSchema.safeParse({ email, password });
