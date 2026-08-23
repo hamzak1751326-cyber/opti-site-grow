@@ -230,6 +230,7 @@ function AuthPage() {
                   {tab === "signup" ? "Create free account" : "Sign in"}
                 </Button>
               </form>
+              {tab === "signup" ? <p className="mt-4 text-center text-xs leading-5 text-muted-foreground">By creating an account, you agree to our <Link to="/terms" className="underline-offset-4 hover:underline">Terms of Use</Link> and acknowledge our <Link to="/privacy" className="underline-offset-4 hover:underline">Privacy Policy</Link>.</p> : null}
             </Tabs>
           )}
         </div>
