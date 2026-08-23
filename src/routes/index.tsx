@@ -286,7 +286,7 @@ export default function LandingPage() {
       <footer className="border-t border-border">
         <div className="mx-auto flex w-full max-w-6xl flex-col items-center justify-between gap-4 px-4 py-8 text-sm text-muted-foreground sm:flex-row sm:px-6">
           <Logo />
-          <p>© {new Date().getFullYear()} OptiSite AI. Free AI website audits.</p>
+          <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-2 sm:justify-end"><Link to="/terms" className="hover:text-foreground">Terms</Link><Link to="/privacy" className="hover:text-foreground">Privacy</Link><Link to="/cookies" className="hover:text-foreground">Cookies</Link><Link to="/contact" className="hover:text-foreground">Contact</Link><p>© {new Date().getFullYear()} OptiSite AI. Free AI website audits.</p></div>
         </div>
       </footer>
     </div>
