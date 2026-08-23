@@ -21,6 +21,14 @@ import { Route as AuthenticatedProfileRouteImport } from './routes/_authenticate
 import { Route as AuthenticatedReportsRouteImport } from './routes/_authenticated/reports'
 import { Route as AuthenticatedSettingsRouteImport } from './routes/_authenticated/settings'
 import { Route as AuthenticatedAuditsAuditIdRouteImport } from './routes/_authenticated/audits_.$auditId'
+import { Route as TermsRouteImport } from './routes/terms'
+import { Route as PrivacyRouteImport } from './routes/privacy'
+import { Route as CookiesRouteImport } from './routes/cookies'
+import { Route as AcceptableUseRouteImport } from './routes/acceptable-use'
+import { Route as AiDisclaimerRouteImport } from './routes/ai-disclaimer'
+import { Route as AccountDeletionRouteImport } from './routes/account-deletion'
+import { Route as ContactRouteImport } from './routes/contact'
+
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -84,7 +92,22 @@ const AuthenticatedAuditsAuditIdRoute =
     getParentRoute: () => AuthenticatedRouteRoute,
   } as any)
 
+const TermsRoute = TermsRouteImport.update({ id: '/terms', path: '/terms', getParentRoute: () => rootRouteImport } as any)
+const PrivacyRoute = PrivacyRouteImport.update({ id: '/privacy', path: '/privacy', getParentRoute: () => rootRouteImport } as any)
+const CookiesRoute = CookiesRouteImport.update({ id: '/cookies', path: '/cookies', getParentRoute: () => rootRouteImport } as any)
+const AcceptableUseRoute = AcceptableUseRouteImport.update({ id: '/acceptable-use', path: '/acceptable-use', getParentRoute: () => rootRouteImport } as any)
+const AiDisclaimerRoute = AiDisclaimerRouteImport.update({ id: '/ai-disclaimer', path: '/ai-disclaimer', getParentRoute: () => rootRouteImport } as any)
+const AccountDeletionRoute = AccountDeletionRouteImport.update({ id: '/account-deletion', path: '/account-deletion', getParentRoute: () => rootRouteImport } as any)
+const ContactRoute = ContactRouteImport.update({ id: '/contact', path: '/contact', getParentRoute: () => rootRouteImport } as any)
+
 export interface FileRoutesByFullPath {
+  '/terms': typeof TermsRoute
+  '/privacy': typeof PrivacyRoute
+  '/cookies': typeof CookiesRoute
+  '/acceptable-use': typeof AcceptableUseRoute
+  '/ai-disclaimer': typeof AiDisclaimerRoute
+  '/account-deletion': typeof AccountDeletionRoute
+  '/contact': typeof ContactRoute
   '/': typeof IndexRoute
   '/auth': typeof AuthRoute
   '/reset-password': typeof ResetPasswordRoute
@@ -261,6 +284,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedAuditsAuditIdRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/terms': { id: '/terms'; path: '/terms'; fullPath: '/terms'; preLoaderRoute: typeof TermsRouteImport; parentRoute: typeof rootRouteImport }
+    '/privacy': { id: '/privacy'; path: '/privacy'; fullPath: '/privacy'; preLoaderRoute: typeof PrivacyRouteImport; parentRoute: typeof rootRouteImport }
+    '/cookies': { id: '/cookies'; path: '/cookies'; fullPath: '/cookies'; preLoaderRoute: typeof CookiesRouteImport; parentRoute: typeof rootRouteImport }
+    '/acceptable-use': { id: '/acceptable-use'; path: '/acceptable-use'; fullPath: '/acceptable-use'; preLoaderRoute: typeof AcceptableUseRouteImport; parentRoute: typeof rootRouteImport }
+    '/ai-disclaimer': { id: '/ai-disclaimer'; path: '/ai-disclaimer'; fullPath: '/ai-disclaimer'; preLoaderRoute: typeof AiDisclaimerRouteImport; parentRoute: typeof rootRouteImport }
+    '/account-deletion': { id: '/account-deletion'; path: '/account-deletion'; fullPath: '/account-deletion'; preLoaderRoute: typeof AccountDeletionRouteImport; parentRoute: typeof rootRouteImport }
+    '/contact': { id: '/contact'; path: '/contact'; fullPath: '/contact'; preLoaderRoute: typeof ContactRouteImport; parentRoute: typeof rootRouteImport }
   }
 }
 
@@ -294,6 +324,13 @@ const rootRouteChildren: RootRouteChildren = {
   AuthenticatedRouteRoute: AuthenticatedRouteRouteWithChildren,
   AuthRoute: AuthRoute,
   ResetPasswordRoute: ResetPasswordRoute,
+  TermsRoute: TermsRoute,
+  PrivacyRoute: PrivacyRoute,
+  CookiesRoute: CookiesRoute,
+  AcceptableUseRoute: AcceptableUseRoute,
+  AiDisclaimerRoute: AiDisclaimerRoute,
+  AccountDeletionRoute: AccountDeletionRoute,
+  ContactRoute: ContactRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
