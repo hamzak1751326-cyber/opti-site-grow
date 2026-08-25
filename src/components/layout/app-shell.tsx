@@ -18,6 +18,7 @@ import {
 import { useQueryClient } from "@tanstack/react-query";
 
 import { Logo } from "@/components/brand/logo";
+import { Chatbot } from "@/components/chatbot";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
@@ -171,6 +172,7 @@ export function AppShell({
           <main className="px-4 py-6 lg:px-8 lg:py-8">{children}</main>
         </div>
       </div>
+      <Chatbot />
     </div>
   );
 }
